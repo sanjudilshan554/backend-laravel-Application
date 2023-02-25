@@ -8,6 +8,7 @@ use App\Http\Controllers\LectureRegController;
 use App\Http\Controllers\KuppiController;
 use App\Http\Controllers\RevisionController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SoftwareController;
 
 
 
@@ -37,3 +38,4 @@ Route::post('/admin/login',[AuthController::class, 'Adminlogin']);
 Route::post('/admin/register',[AuthController::class, 'Adminregister']);
 Route::post('/student/login',[AuthController::class, 'Studentlogin']);
 Route::post('/lecture/login',[AuthController::class, 'Lecuturelogin']);
+Route::post('/Software',[SoftwareController::class,'store']);
