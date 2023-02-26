@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class subject extends Model
+class edu_qualification extends Model
 {
     use HasFactory;
 
@@ -13,6 +13,6 @@ class subject extends Model
         'registrations_id',
         'lecture_regs_id',
         'name',
-        'rating',
+        'description',
     ];
 }

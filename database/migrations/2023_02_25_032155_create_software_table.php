@@ -15,13 +15,16 @@ class CreateSoftwareTable extends Migration
     {
         Schema::create('software', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('registrations_id');
+            $table->unsignedBigInteger('registrations_id')->nullable();
             $table->foreign('registrations_id')->references('id')->on('registrations')->onDelete('cascade');
            
-            $table->unsignedBigInteger('Lecture_regs_id');
+            $table->unsignedBigInteger('Lecture_regs_id')->nullable();
             $table->foreign('Lecture_regs_id')->references('id')->on('Lecture_regs')->onDelete('cascade');
             
-            $table->String('name');
+            $table->String('software1')->nullable();
+            $table->String('software2')->nullable();
+            $table->String('software3')->nullable();
+            $table->String('software4')->nullable();
             $table->String('rating');
             $table->timestamps();
         });

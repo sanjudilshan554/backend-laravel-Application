@@ -12,7 +12,10 @@ class Software extends Model
     protected $fillable=[
         'registrations_id',
         'Lecture_regs_id',
-        'name',
+        'software1',
+        'software2',
+        'software3',
+        'software4',
         'rating',
     ];
 }
