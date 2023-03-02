@@ -18,4 +18,8 @@ class Software extends Model
         'software4',
         'rating',
     ];
+
+    protected $casts = [
+        'rating' => 'array'
+    ];
 }

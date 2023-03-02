@@ -12,7 +12,16 @@ class subject extends Model
     protected $fillable=[
         'registrations_id',
         'lecture_regs_id',
-        'name',
+        'year',
+        'semester',
+        'subject',
         'rating',
+    ];
+
+    protected $casts = [
+        'year' => 'array',
+        'semester' => 'array',
+        'subject' => 'array',
+        'rating' => 'array',
     ];
 }

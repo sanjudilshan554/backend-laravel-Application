@@ -15,4 +15,9 @@ class work_exp extends Model
         'name',
         'Description',
     ];
+
+    protected $casts = [
+        'name' => 'array',
+        'Description' => 'array',
+    ];
 }

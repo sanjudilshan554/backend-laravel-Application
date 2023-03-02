@@ -15,4 +15,10 @@ class edu_qualification extends Model
         'name',
         'description',
     ];
+
+    protected $casts = [
+        'name' => 'array',
+        'description' => 'array',
+        
+    ];
 }

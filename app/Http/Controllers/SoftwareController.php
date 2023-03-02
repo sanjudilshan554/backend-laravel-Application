@@ -17,7 +17,7 @@ class SoftwareController extends Controller
             'software2'=>[''],
             'software3'=>[''],
             'software4'=>[''],
-            'rating'=>['required'],
+            'rating'=>[''],
 
         
         ]);

@@ -25,7 +25,7 @@ class CreateSoftwareTable extends Migration
             $table->String('software2')->nullable();
             $table->String('software3')->nullable();
             $table->String('software4')->nullable();
-            $table->String('rating');
+            $table->json('rating');
             $table->timestamps();
         });
     }

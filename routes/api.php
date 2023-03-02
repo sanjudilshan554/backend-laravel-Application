@@ -12,7 +12,7 @@ use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\WorkExpController;
 use App\Http\Controllers\EduQualificationController;
-
+use App\Http\Controllers\Allcontroller;
 
 
 /*
@@ -45,3 +45,4 @@ Route::post('/Software',[SoftwareController::class,'store']);
 Route::post('/subject',[SubjectController::class,'store']);
 Route::post('/work_exp',[WorkExpController::class,'store']);
 Route::post('/edu_qualify',[EduQualificationController::class,'store']);
+Route::post('/update_profile',[Allcontroller::class,'update']);
