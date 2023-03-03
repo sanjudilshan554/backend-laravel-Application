@@ -141,10 +141,11 @@ class Allcontroller extends Controller
             'registrations_id'=>$register_id,
             'lecture_regs_id'=> $Lecture_regs_id,
             'name'=>$work_exp_name,
-            'description'=>$work_exp_detail,
+            'Description'=>$work_exp_detail,
         ]);
 
-        return $data;
+        return response()->json(['data'=>$data,'status'=>'200','message'=>'data saved']);
+        
 
     }
 }
