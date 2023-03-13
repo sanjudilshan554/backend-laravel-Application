@@ -15,6 +15,9 @@ class CreateKuppisTable extends Migration
     {
         Schema::create('kuppis', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('registrations_id')->nullable();;
+            $table->foreign('registrations_id')->references('id')->on('registrations')->onDelete('cascade');
+
             $table->String('kuppiname');
             $table->String('subject');
             $table->String('freetime');

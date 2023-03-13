@@ -14,7 +14,7 @@ use App\Http\Controllers\WorkExpController;
 use App\Http\Controllers\EduQualificationController;
 use App\Http\Controllers\Allcontroller;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\AlluserProfile;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -47,3 +47,5 @@ Route::post('/work_exp',[WorkExpController::class,'store']);
 Route::post('/edu_qualify',[EduQualificationController::class,'store']);
 Route::post('/update_profile',[Allcontroller::class,'update']);
 Route::post('/formSubmit',[PostController::class,'formSubmit']);
+
+Route::post('/profile/data',[AlluserProfile::class,'getProfileData']);

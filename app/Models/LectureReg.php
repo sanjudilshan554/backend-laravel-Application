@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\LectureReg;
 
 class LectureReg extends Model
 {
     use HasFactory;
     //databse name here
     protected $fillable=[
+            'id',
             'fname',
             'lname',
             'age',
@@ -31,4 +33,10 @@ class LectureReg extends Model
             'password',
             'role',
         ];
+
+    public function LectureReg()  
+    {  
+      return $this->belongsTo(LectureReg::class);  
+    }
 }
+      
