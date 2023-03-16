@@ -15,6 +15,8 @@ class EduQualificationController extends Controller
         'registrations_id'=>[''],
         'lecture_regs_id'=>[''],
         'name'=>['required'],
+        'datefrom'=>[''],
+        'dateto'=>[''],
         'description'=>['required'],
         ]);
 
@@ -23,6 +25,8 @@ class EduQualificationController extends Controller
         'registrations_id'=>$validate_data['registrations_id'],
         'lecture_regs_id'=>$validate_data['lecture_regs_id'],
         'name'=>$validate_data['name'],
+        'datefrom'=>$validate_data['datefrom'],
+        'dateto'=>$validate_data['dateto'],
         'description'=>$validate_data['description'],
         ]);
 

@@ -22,6 +22,9 @@ class CreateEduQualificationsTable extends Migration
             $table->foreign('lecture_regs_id')->references('id')->on('lecture_regs')->onDelete('cascade');
             $table->json('name');
             
+            $table->json('datefrom')->nullable();
+            $table->json('dateto')->nullable();
+            
             $table->json('description')->nullable();;
             $table->timestamps();
         });

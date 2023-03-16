@@ -15,11 +15,15 @@ class edu_qualification extends Model
         'registrations_id',
         'lecture_regs_id',
         'name',
+        'datefrom',
+        'dateto',
         'description',
     ];
 
     protected $casts = [
         'name' => 'array',
+        'datefrom'=>'array',
+        'dateto'=>'array',
         'description' => 'array',
         
     ];

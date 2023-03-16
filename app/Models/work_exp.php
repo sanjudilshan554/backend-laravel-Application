@@ -15,11 +15,15 @@ class work_exp extends Model
         'registrations_id',
         'lecture_regs_id',
         'name',
+        'datefrom',
+        'dateto',
         'Description',
     ];
 
     protected $casts = [
         'name' => 'array',
+        'datefrom'=>'array',
+        'dateto'=>'array',
         'Description' => 'array',
     ];
 

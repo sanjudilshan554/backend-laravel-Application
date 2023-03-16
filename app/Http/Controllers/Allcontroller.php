@@ -78,10 +78,32 @@ class Allcontroller extends Controller
         $Des_three=$request->education_qualification["qualification_three_descripition"];
       
 
+        //Time selector one
+        $edu_date_from_one=$request->education_qualification["qualification_one_date_from"];
+        $edu_date_to_one=$request->education_qualification["qualification_one_date_to"];
+        
+        //Time selector two 
+        $edu_date_from_two=$request->education_qualification["qualification_two_date_from"];
+        $edu_date_to_two=$request->education_qualification["qualification_two_date_to"];
+
+        //Time selector three
+        $edu_date_from_three=$request->education_qualification["qualification_three_date_from"];
+        $edu_date_to_three=$request->education_qualification["qualification_three_date_to"];
+
+
         //Json array
         $name_of_Edu_Qulaify=["n1"=>  $qualifi_one, "n2"=>$qualifi_two ,"n3"=>$qualifi_three];
         $Des_of_Edu_Qulaify=["d1"=>  $Des_one, "d2"=>$Des_two ,"d3"=>$Des_three];
-        
+
+        $date_of_edu=["date_one_of_one"=>$edu_date_from_one, "date_two_of_one"=>$edu_date_to_one,
+        "date_one_of_two"=>$edu_date_from_two,"date_two_of_two"=>$edu_date_to_two,
+        "date_one_of_three"=>$edu_date_from_three,"date_two_of_three"=>$edu_date_to_three];
+
+        $date_of_edu_from=["date_one_of_one"=>$edu_date_from_one, "date_two_of_one"=>$edu_date_to_one,
+        "date_one_of_two"=>$edu_date_from_two];
+
+        $date_of_edu_to=["date_two_of_two"=>$edu_date_to_two,
+        "date_one_of_three"=>$edu_date_from_three,"date_two_of_three"=>$edu_date_to_three];
 
 
         //Work Experience part------------------------------------------------------
@@ -96,10 +118,28 @@ class Allcontroller extends Controller
         $work_exp_des_three=$request->work_experince["work_experince_three_descripition"];
 
 
+         //Time selector one
+         $work_date_from_one=$request->work_experince["work_experince_one_date_from"];
+         $work_date_to_one=$request->work_experince["work_experince_one_date_to"];
+         
+         //Time selector two 
+         $work_date_from_two=$request->work_experince["work_experince_two_date_from"];
+         $work_date_to_two=$request->work_experince["work_experince_two_date_to"];
+ 
+         //Time selector three
+         $work_date_from_three=$request->work_experince["work_experince_two_date_from"];
+         $work_date_to_three=$request->work_experince["work_experince_two_date_to"];
+
+
         //Array
         $work_exp_name=["n1"=>$work_exp_name_one, "n2"=>$work_exp_name_two,"n3"=>$work_exp_name_three];
         $work_exp_detail=["d1"=>$work_exp_des_one, "d2"=>$work_exp_des_two,"d3"=>$work_exp_des_three];
 
+        $date_of_work_from=["date_one_of_one"=>$work_date_from_one, "date_two_of_one"=>$work_date_to_one,
+        "date_one_of_two"=>$work_date_from_two];
+
+        $date_of_work_to=["date_two_of_two"=>$work_date_to_two,
+        "date_one_of_three"=>$work_date_from_three,"date_two_of_three"=>$work_date_to_three];
         
         $register_id = NULL;
         $Lecture_regs_id = NULL;
@@ -133,6 +173,8 @@ class Allcontroller extends Controller
         'registrations_id'=>$register_id,
         'lecture_regs_id'=> $Lecture_regs_id,
         'name'=>$name_of_Edu_Qulaify,
+        'datefrom'=>$date_of_edu_from,
+        'dateto'=>$date_of_edu_to,
         'description'=>$Des_of_Edu_Qulaify,
         ]);
 
@@ -141,6 +183,8 @@ class Allcontroller extends Controller
             'registrations_id'=>$register_id,
             'lecture_regs_id'=> $Lecture_regs_id,
             'name'=>$work_exp_name,
+            'datefrom'=>$date_of_work_from,
+            'dateto'=>$date_of_work_to,
             'Description'=>$work_exp_detail,
         ]);
 
