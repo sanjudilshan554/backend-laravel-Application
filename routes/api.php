@@ -32,7 +32,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/student', [StudentController::class, 'store']);
 Route::get('/student', [StudentController::class, 'getStudent']);
-
 Route::post('/registration', [RegistrationController::class, 'stroe']);
 Route::post('/lecturereg', [LectureRegController::class, 'store']);
 Route::post('/kuppi', [KuppiController::class, 'store']);

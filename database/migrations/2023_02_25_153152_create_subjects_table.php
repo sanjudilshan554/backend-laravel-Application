@@ -15,16 +15,16 @@ class CreateSubjectsTable extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('registrations_id')->nullable();;
+            $table->unsignedBigInteger('registrations_id')->nullable();
             $table->foreign('registrations_id')->references('id')->on('registrations')->onDelete('cascade');
 
-            $table->unsignedBigInteger('lecture_regs_id')->nullable();;
+            $table->unsignedBigInteger('lecture_regs_id')->nullable();
             $table->foreign('lecture_regs_id')->references('id')->on('lecture_regs')->onDelete('cascade');
 
-            $table->json('year')->nullable();;
-            $table->json('semester')->nullable();;
-            $table->json('subject')->nullable();;
-            $table->json('rating')->nullable();;
+            $table->json('year')->nullable();
+            $table->json('semester')->nullable();
+            $table->json('subject')->nullable();
+            $table->json('rating')->nullable();
             $table->timestamps();
 
         });

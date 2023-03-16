@@ -12,16 +12,19 @@ class PostController extends Controller
         if($request->image) {
             $imageName = time().'.'.$request->image->getClientOriginalExtension();
             $url = $request->image->move(public_path('images'), $imageName);
+            $title=$request->title;
             $description = $request->description;
     
             $validate_data=$request->validate([
                 'description'=>['required'],
+                'title'=>['required'],
             ]);
             $reg_id = NULL;
             Post::create([
+                'title'=>$validate_data['title'],
                 'description'=>$validate_data['description'],
                 'url'=> $url,
-                'registrations_id'=> $reg_id
+                'registrations_id'=> $reg_id,
                 
             ]);
         } else {
