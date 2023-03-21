@@ -32,5 +32,15 @@ class PostController extends Controller
         }
     	 return response()->json(['success'=>'You have successfully upload image.']);
     }
+
+    public function getPostData()
+    {
+        $data = Post::get();
+        if($data) {
+            return response()->json(['post_data'=>$data]);
+        } else {
+            return response()->json(['failed'=>'no data']);
+        }
+    }
 }
 
