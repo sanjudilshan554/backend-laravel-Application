@@ -61,10 +61,13 @@ class AuthController extends Controller
         $password = $request->password;
     
         $Registration = Registration::where('unvRegNo',  $index)->where('password',$password)->first();
-        if($Registration->unvRegNo === $index || $Registration->password === $password) {
-            return response()->json(['data'=>$Registration, 'message' => 'User is correct']);
+        if($Registration) {
+            if($Registration->unvRegNo === $index || $Registration->password === $password) {
+                return response()->json(['data'=>$Registration, 'message' => 'User is correct','status'=>'200']);
+            }
+        } else {
+            return response()->json(['message' => 'User is Incorrect','status'=>'500']);
         }
-        return response()->json(['message' => 'User is Incorrect']);
     }
 
 
@@ -73,13 +76,14 @@ class AuthController extends Controller
         $index=$request->empNo;
         $password=$request->password;
 
-        $LectureReg= LectureReg::where('empNo',$index)-> where('password',$password)->first();
+        $LectureReg= LectureReg::where('empNo',$index)->where('password',$password)->first();
+        if($LectureReg) {
             if($LectureReg->empNo === $index || $LectureReg->password === $password){
-                return response()->json(['data'=>$LectureReg,'message'=>'User is correct']);
+                return response()->json(['data'=>$LectureReg,'message'=>'User is correct','status'=>'200']);
             }
-            else{
-                return response()->json(['message'=>'User is Incorrect']);
-            }
+        } else {
+            return response()->json(['message'=>'User is Incorrect','status'=>'500']);
+        }        
     }
        
  }

@@ -28,11 +28,13 @@ class LectureRegController extends Controller
             'email'=>['required','email'],
             'empNo'=>['required'],
             'password'=>['required'],
-            'role'=>['required'],
+          
         ]);
 
         // return $request;
 
+        $role="lecture";
+        
         $data=LectureReg::create([
             'fname'=>$validate_data['fname'],
             'lname'=> $validate_data['lname'],
@@ -54,7 +56,7 @@ class LectureRegController extends Controller
             'empNo'=> $validate_data['empNo'],
             'password'=> $validate_data['password'],
          // 'password'=> Hash::make($validate_data['password']),
-            'role'=>$validate_data['role'],
+            'role'=>$role,
             
         ]);
         //return $data;

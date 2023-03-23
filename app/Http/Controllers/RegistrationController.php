@@ -34,9 +34,10 @@ class RegistrationController extends Controller
             'Certification'=>['required'],
             'University_Reg_No'=>['required'],
             'New_Password'=>['required'],
-            'role'=>['required'],
              
         ]);
+
+        $role = "student";
         
         $data=Registration::create([
             //databse item => ahead data / also postman data
@@ -64,7 +65,7 @@ class RegistrationController extends Controller
             'unvRegNo'=> $validate_data['University_Reg_No'],
             // 'password' => Hash::make($validate_data['New_Password']),
             'password'=> $validate_data['New_Password'],
-            'role'=> $validate_data['role'],
+            'role'=> $role,
         ]);
         
         return response()->json(['data'=>$data,'status'=>'200','message'=>'data save']);

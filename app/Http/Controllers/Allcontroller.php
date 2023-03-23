@@ -12,9 +12,7 @@ class Allcontroller extends Controller
 {
     public function update(Request $request){
 
- 
-        
-
+        $user_id = $request->id;
          //Software part -----------------------------------------------------------
         // any name = Front end name
         $software_one =  $request->software['software_one'];
