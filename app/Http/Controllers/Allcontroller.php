@@ -12,8 +12,21 @@ class Allcontroller extends Controller
 {
     public function update(Request $request){
 
+     
         $user_id = $request->id;
-         //Software part -----------------------------------------------------------
+        $user_role=$request->role;
+        
+        if($user_role == "lecture"){
+            $Lecture_regs_id=$user_id;
+            $register_id = NULL;
+        }
+        else if($user_role == "student"){
+            $register_id=$user_id;
+            $Lecture_regs_id = NULL;
+        }
+
+
+        //Software part -----------------------------------------------------------
         // any name = Front end name
         $software_one =  $request->software['software_one'];
         $software_two =  $request->software['software_two'];
@@ -30,7 +43,7 @@ class Allcontroller extends Controller
         $software_rate_data = ["s1" =>  $software_one_rate, "s2" => $software_two_rate , "s3" => $software_three_rate , "s4" => $software_four_rate];
 
 
-         // subject part--------------------------------------------------------
+        // subject part--------------------------------------------------------
         // gettting data from front end
 
 
@@ -139,8 +152,6 @@ class Allcontroller extends Controller
         $date_of_work_to=["date_one_of_three"=>$work_date_to_two,
         "date_two_of_three"=>$work_date_from_two,"date_three_of_three"=>$work_date_to_three];
         
-        $register_id = NULL;
-        $Lecture_regs_id = NULL;
 
 
 
@@ -155,16 +166,7 @@ class Allcontroller extends Controller
             'rating' => $software_rate_data,
         ]);
 
-        //Saving subjects
-        $data = subject::create([
-            'registrations_id' => $register_id,
-            'Lecture_regs_id' => $Lecture_regs_id,
-            'year' => $selected_year,
-            'semester' => $selected_semester,
-            'subject' => $selected_subject,
-            'rating' => $selected_rating,
-           
-        ]);
+        
 
         //Saving education qualification
         $data=edu_qualification::create([
@@ -186,6 +188,16 @@ class Allcontroller extends Controller
             'Description'=>$work_exp_detail,
         ]);
 
+        //Saving subjects
+        $data = subject::create([
+            'registrations_id' => $register_id,
+            'lecture_regs_id ' => $Lecture_regs_id,
+            'year' => $selected_year,
+            'semester' => $selected_semester,
+            'subject' => $selected_subject,
+            'rating' => $selected_rating,
+           
+        ]);
         return response()->json(['data'=>$data,'status'=>'200','message'=>'data saved']);
         
 

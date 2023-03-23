@@ -19,7 +19,7 @@ class CreateSoftwareTable extends Migration
             $table->foreign('registrations_id')->references('id')->on('registrations')->onDelete('cascade');
            
             $table->unsignedBigInteger('Lecture_regs_id')->nullable();
-            $table->foreign('Lecture_regs_id')->references('id')->on('Lecture_regs')->onDelete('cascade');
+            $table->foreign('Lecture_regs_id')->references('id')->on('lecture_regs')->onDelete('cascade');
             
             $table->String('software1')->nullable();
             $table->String('software2')->nullable();
