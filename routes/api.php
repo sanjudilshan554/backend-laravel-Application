@@ -49,3 +49,4 @@ Route::post('/formSubmit',[PostController::class,'formSubmit']);
 
 Route::post('/profile/data',[AlluserProfile::class,'getProfileData']);
 Route::get('/get-post',[PostController::class,'getPostData']);
+Route::post('/search/subject',[SubjectController::class,'searchSubject']);
