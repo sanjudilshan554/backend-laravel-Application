@@ -7,29 +7,30 @@ use App\Models\kuppi;
 class KuppiController extends Controller
 {
     public function store(Request $request){
-        
+    
         $validate_data=$request ->validate([
-            'kuppiname'=>['required'],
-            'registrations_id'=>['required'],//local host reg id
+            
+            'revison_name'=>['required'],
+            'local_id'=>['required'],//local host reg id
             'subject'=>['required'],
-            'freetime'=>['required'],
+            'free_time'=>['required'],
             'place'=>['required'],
-            'seniorName'=>['required'],
-            'senioremail'=>['required','email'],
-            'seniourregid'=>['required'],
-            'onoff'=>['required'],
+            'name'=>['required'],
+            'email'=>['required','email'],
+            'regId'=>['required'],
+            'type'=>['required'],
         ]);
 
        $data=kuppi::create([
-            'kuppiname'=> $validate_data['kuppiname'],
-            'registrations_id'=> $validate_data['registrations_id'],//local host reg id
+            'kuppiname'=> $validate_data['revison_name'],
+            'registrations_id'=> $validate_data['local_id'],//local host reg id
             'subject'=> $validate_data['subject'],
-            'freetime'=> $validate_data['freetime'],
+            'freetime'=> $validate_data['free_time'],
             'place'=> $validate_data['place'],
-            'seniorName'=> $validate_data['seniorName'],
-            'senioremail'=> $validate_data['senioremail'],
-            'seniourregid'=> $validate_data['seniourregid'],
-            'on/off'=> $validate_data['onoff'],
+            'seniorName'=> $validate_data['name'],
+            'senioremail'=> $validate_data['email'],
+            'seniourregid'=> $validate_data['regId'],
+            'on/off'=> $validate_data['type'],
             
         ]);
 

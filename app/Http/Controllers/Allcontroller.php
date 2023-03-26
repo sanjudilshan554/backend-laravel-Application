@@ -57,6 +57,8 @@ class Allcontroller extends Controller
         $semester_one=$request->subject["semster_id"];
         $semester_two=$request->subject["subject_two_id"];
         $semester_three=$request->subject["third_year_R"];
+
+
         //there no semester for fourth year subjects
 
         //subject
@@ -71,6 +73,8 @@ class Allcontroller extends Controller
         $rating_three=$request->subject["subject_three_rate"];
         $rating_four=$request->subject["subject_four_rate"];
         
+
+
         //Array
         $selected_year = ["year1" =>  $first_year, "year2" => $second_year , "year3" => $third_year , "year4" => $fourth_year];
         $selected_semester = ["sse1" =>  $semester_one, "sse2" => $semester_two , "sse3" => $semester_three];
