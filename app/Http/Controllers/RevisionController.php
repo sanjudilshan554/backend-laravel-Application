@@ -8,10 +8,13 @@ use Illuminate\Http\Request;
 class RevisionController extends Controller
 {
     public function store(Request $request){
-       
+     
+     
+        //Remember to add local id into that
 
         $validate_data=$request ->validate([
             'revName'=>['required'],
+            // 'localID'=>['required'],
             'subject'=>['required'],
             'freetime'=>['required'],
             'lecHallName'=>['required'],
@@ -23,6 +26,7 @@ class RevisionController extends Controller
 
         $data=revision::create([
             'revName'=>$validate_data['revName'],
+            // 'localID'=>$validate_data['localID'],
             'subject'=>$validate_data['subject'],
             'freetime'=>$validate_data['freetime'],
             'lecHallName'=>$validate_data['lecHallName'],
@@ -31,6 +35,6 @@ class RevisionController extends Controller
             'lectureempID'=>$validate_data['lectureempID'],
         ]);
         
-        return response()->json(['data'=>$data,'status'=>'200','message'=>'data save']);
+        return response()->json(['data'=>$data,'status'=>'200','message'=>'data saved']);
     }
 }

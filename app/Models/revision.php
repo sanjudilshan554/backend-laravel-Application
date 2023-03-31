@@ -11,6 +11,7 @@ class revision extends Model
 
     protected $fillable=[
         'revName',
+        // 'localID',
         'subject',
         'freetime',
         'lecHallName',

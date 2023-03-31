@@ -16,6 +16,7 @@ class CreateRevisionsTable extends Migration
         Schema::create('revisions', function (Blueprint $table) {
             $table->id();
             $table->String('revName');
+            // $table->unsignedBigInteger('localID');
             $table->String('subject');
             $table->String('freetime');
             $table->String('lecHallName');
