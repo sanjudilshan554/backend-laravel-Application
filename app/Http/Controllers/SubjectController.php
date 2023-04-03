@@ -189,7 +189,7 @@ class SubjectController extends Controller
 
     public function searchSubject_lectures(Request $request){
 
-       
+        
 
         $year = $request->year;
         $semester = $request->semester;
@@ -228,7 +228,7 @@ class SubjectController extends Controller
                     if($sem_select_one==$semester){
                         
                          if($subject==$sub_select_one){
-                            
+                           
                                 $data_subject=subject::where('subject->ssa1',$subject)->get();
                                 $year1_arr[$i]= $data_subject;
                                 // $regid=$data_subject[1]->lecture_regs_id;
@@ -298,44 +298,67 @@ class SubjectController extends Controller
                   
          }
 
+        //  return [$year1_arr,$year2_arr,$year3_arr,$year4_arr];
         //return $year1_arr;  
+        // return $i;
+         // there some error here,array come with the inside of some number,so i can't get those number correctly 
+         //I have to remove that number or i have to idenfied that number;
 
-        $unic=$i-1;
+
+        
+     
         $ids1=array();
         $ids2=array();
         $ids3=array();
         $ids4=array();
 
-        $arr1lim=sizeof($year1_arr);
-        $arr2lim=sizeof($year2_arr);
-        $arr3lim=sizeof($year3_arr);
-        $arr4lim=sizeof($year4_arr);
+        $arr1lim=(sizeof($year1_arr))-1;
+        $arr2lim=(sizeof($year2_arr))-1;
+        $arr3lim=(sizeof($year3_arr))-1;
+        $arr4lim=(sizeof($year4_arr))-1;
+
+        
+        //  return [$arr1lim,$arr2lim,$arr3lim,$arr4lim];
 
         if($arr1lim>0){
-            for($j=0; $j<=sizeof($year1_arr); $j++){
-                $ids1[$j]=$year1_arr[$unic][$j]->lecture_regs_id;
-                    
+            $unic=(sizeof($year1_arr))+1;
+            for($j=0; $j<= $arr1lim; $j++){
+                
+                // return $year1_arr[2][$j]->id;
+                $ids1[$j]=$year1_arr[ $unic][$j]->lecture_regs_id;
+                // echo $j;
+                // return $year1_arr[3][$j]->lecture_regs_id;
+                // return $ids1[$j];
+              
               }
+                
         }
-        if($arr2lim>0){
+    
+
+        if($arr2lim-1>0){
+            $unic=(sizeof($year2_arr))+1;
             for($j=0; $j<=sizeof($year2_arr); $j++){
                 $ids2[$j]=$year2_arr[$unic][$j]->lecture_regs_id;
                
             }
         }
-        if($arr3lim>0){
+        if($arr3lim-1>0){
+             $unic=(sizeof($year3_arr))+1;
             for($j=0; $j<=sizeof($year3_arr); $j++){
                 $ids3[$j]=$year3_arr[$unic][$j]->lecture_regs_id;
                
             }
         }
-        if($arr4lim>0){
+        if($arr4lim-1>0){
+             $unic=(sizeof($year4_arr))+1;
             for($j=0; $j<=sizeof($year4_arr); $j++){
                 $ids4[$j]=$year4_arr[$unic][$j]->lecture_regs_id;
            
             }
         }
          
+       
+
          $arr1=sizeof($ids1);
          $arr2=sizeof($ids2);
          $arr3=sizeof($ids3);
