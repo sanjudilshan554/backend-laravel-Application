@@ -14,6 +14,7 @@ class kuppi extends Model
     protected $fillable=[
             'kuppiname',
             'registrations_id', //this mean when user sign in their id contain with this id as a foreign key
+            'cunductor_id',
             'subject',
             'freetime',
             'place',

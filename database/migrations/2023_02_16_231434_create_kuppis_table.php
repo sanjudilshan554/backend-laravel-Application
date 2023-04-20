@@ -18,6 +18,9 @@ class CreateKuppisTable extends Migration
             $table->unsignedBigInteger('registrations_id')->nullable();;
             $table->foreign('registrations_id')->references('id')->on('registrations')->onDelete('cascade');
 
+            $table->unsignedBigInteger('cunductor_id')->nullable();;
+            $table->foreign('cunductor_id')->references('id')->on('registrations')->onDelete('cascade');
+            
             $table->String('kuppiname');
             $table->String('subject');
             $table->String('freetime');
