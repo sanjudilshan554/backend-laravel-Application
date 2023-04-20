@@ -21,6 +21,7 @@ class kuppi extends Model
             'senioremail',
             'seniourregid',
             'on/off',
+            'members',
     ];
 
     public function kuppi(){

@@ -26,6 +26,7 @@ class CreateKuppisTable extends Migration
             $table->String('senioremail');
             $table->String('seniourregid');
             $table->String('on/off');
+            $table->String('members');
             $table->timestamps();
         });
     }

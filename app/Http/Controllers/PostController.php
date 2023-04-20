@@ -20,6 +20,8 @@ class PostController extends Controller
                 'title'=>['required'],
             ]);
             $reg_id = NULL;
+
+            
             Post::create([
                 'title'=>$validate_data['title'],
                 'description'=>$validate_data['description'],
@@ -43,4 +45,3 @@ class PostController extends Controller
         }
     }
 }
-

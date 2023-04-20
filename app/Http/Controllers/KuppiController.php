@@ -19,6 +19,7 @@ class KuppiController extends Controller
             'email'=>['required','email'],
             'regId'=>['required'],
             'type'=>['required'],
+            'members'=>['required'],
         ]);
 
        $data=kuppi::create([
@@ -31,6 +32,7 @@ class KuppiController extends Controller
             'senioremail'=> $validate_data['email'],
             'seniourregid'=> $validate_data['regId'],
             'on/off'=> $validate_data['type'],
+            'members'=>$validate_data['members'],
             
         ]);
 
