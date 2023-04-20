@@ -26,6 +26,7 @@ class SubjectController extends Controller
         return response()->json(['data'=>$data]);
     }
 
+    
     public function searchSubject(Request $request){
         $year = $request->years;
         $semester = $request->semester;
@@ -406,6 +407,9 @@ class SubjectController extends Controller
             if($users) {
                 return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
             }
+
+
+            
            
         }
         

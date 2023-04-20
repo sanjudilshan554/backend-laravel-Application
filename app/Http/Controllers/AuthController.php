@@ -65,7 +65,9 @@ class AuthController extends Controller
             if($Registration->unvRegNo === $index || $Registration->password === $password) {
                 return response()->json(['data'=>$Registration, 'message' => 'User is correct','status'=>'200']);
             }
-        } else {
+            
+        }
+         else {
             return response()->json(['message' => 'User is Incorrect','status'=>'500']);
         }
     }
@@ -87,7 +89,3 @@ class AuthController extends Controller
     }
        
  }
-
-
-
-

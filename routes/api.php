@@ -46,7 +46,6 @@ Route::post('/work_exp',[WorkExpController::class,'store']);
 Route::post('/edu_qualify',[EduQualificationController::class,'store']);
 Route::post('/update_profile',[Allcontroller::class,'update']);
 Route::post('/formSubmit',[PostController::class,'formSubmit']);
-
 Route::post('/profile/data',[AlluserProfile::class,'getProfileData']);
 Route::get('/get-post',[PostController::class,'getPostData']);
 Route::post('/search/subject',[SubjectController::class,'searchSubject']);

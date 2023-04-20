@@ -11,13 +11,14 @@ class revision extends Model
 
     protected $fillable=[
         'revName',
-        // 'localID',
+        'registrations_id',
         'subject',
         'freetime',
         'lecHallName',
         'lectureName',
         'lecturemail',
         'lectureempID',
+        'members',
 
     ];
 }
