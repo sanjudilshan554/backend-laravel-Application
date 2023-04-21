@@ -58,13 +58,16 @@ class KuppiController extends Controller
 
         $Accepter_id=$request->Accepter_id;
        
+        
 
+        
         $data=Registration::select('registrations.*','kuppis.*')
         ->join('kuppis','registrations.id','=','kuppis.registrations_id')
-        ->where('kuppis.registrations_id',$Accepter_id)
+        ->where('kuppis.cunductor_id',$Accepter_id)
         ->get();
         
- 
+
+        
         //  $data=kuppi::where('cunductor_id',$Accepter_id)->get();
       
 
@@ -82,4 +85,6 @@ class KuppiController extends Controller
 
         return response()->json(['data'=>$data,'response'=>'200']);
     }
+
+    
 }

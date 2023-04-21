@@ -28,6 +28,8 @@ class SubjectController extends Controller
 
     
     public function searchSubject(Request $request){
+        
+       
         $year = $request->years;
         $semester = $request->semester;
         // print_r (explode('[0]',$semester)[0]);
@@ -43,6 +45,7 @@ class SubjectController extends Controller
 
         $row_count = subject::count();
 
+       
        for($i = 0;  $i <$row_count; $i++) {
         
         
@@ -51,6 +54,8 @@ class SubjectController extends Controller
                 $year3= $subject_data[$i]->year['year3'] ;
                 $year4= $subject_data[$i]->year['year4'] ;
 
+                
+                
                 $sem_select_one=$subject_data[$i]->semester['sse1'] ;
                 $sem_select_two=$subject_data[$i]->semester['sse2'] ;
                 $sem_select_three=$subject_data[$i]->semester['sse3'] ;
@@ -63,21 +68,43 @@ class SubjectController extends Controller
                 
                 if($year1 == $year){
 
-                    
-                    //  $result= $year1;
-                    //  $data_year = subject::where('year->year1',$result)->get();
-                    //  $year1_arr[$i]=($regid=$data_year[$i]->registrations_id);
-                    
-                    if($sem_select_one==$semester){
-                       
-                        // $data_semester = subject::where('semester->sse1',$result)->get();
-                            // $year1_arr[$i]=($regid=$data_semester[$i]->registrations_id);
-                            
-                            if($subject==$sub_select_one){
-                                $data_subject=subject::where('subject->ssa1',$subject)->get();
-                                $year1_arr[$i]=($regid=$data_subject[$i]->registrations_id);
+                     if($sem_select_one==$semester){
                         
+                       if($subject==$sub_select_one){
+
+                                $data_subject=subject::where('subject->ssa1',$subject)->get();
+                                
+                               
+                                // return $data_subject;
+                                // $year1_arr[$i]=($regid=$data_subject[$i]->registrations_id);
+                                $data_subject_count=subject::where('subject->ssa1',$subject)->get()->count();
+                                // return $data_subject[3]->registrations_id;
+                                // return $data_subject_count;
+                                
+                                $arr=array();
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $arr[$i]=$regId=$data_subject[$i]->registrations_id;
+                                }
+                               
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
+                                    ->whereIn('registrations_id',$arr)
+                                    ->get();
+
+                                   
+                                    if($users) {
+                                    return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+                                    }
+                                }
+                                // return $data_subject;
+                                // $conductorID=$data_subject[]->registrations_id;
+                                
+                                // return $conductorID;
+                                
+                                
                             }
+
+                        
                             
                      }
                      
@@ -86,19 +113,48 @@ class SubjectController extends Controller
                
                 else if($year2 == $year){
                     
+                
                     
                     if($sem_select_two==$semester){
                         
                             
                             if($subject==$sub_select_two){
                                 
-                                $data_subject=subject::where('subject->ssa2',$subject)->get();
-                                $year2_arr[$i]=($regid=$data_subject[$i]->registrations_id);
+                                //Previouse Testing
+                                // $data_subject=subject::where('subject->ssa2',$subject)->get();
+                                // $year2_arr[$i]=($regid=$data_subject[$i]->registrations_id);
                                 
+                                // $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
+                                // ->whereIn('registrations_id', $year2_arr)
+                                // ->get();
+
+                                // if($users) {
+                                // return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+
+                                //working
+                                //----------------------------------------------------------------
+                                $data_subject=subject::where('subject->ssa2',$subject)->get();
+                                
+                                $data_subject_count=subject::where('subject->ssa2',$subject)->get()->count();
+                                
+                                $arr=array();
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $arr[$i]=$regId=$data_subject[$i]->registrations_id;
+                                }
+                               
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
+                                    ->whereIn('registrations_id',$arr)
+                                    ->get();
+
+                                   
+                                    if($users) {
+                                    return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+                                    }
+                                }
+                                
+                                }
                             }
-                           
-                    }
-                    
                         
                   }
                 
@@ -110,9 +166,38 @@ class SubjectController extends Controller
                          
                             if($subject==$sub_select_three){
                                 
-                                $data_subject=subject::where('subject->ssa3',$subject)->get();
-                                $year3_arr[$i]=($regid=$data_subject[$i]->registrations_id);
+                                // $data_subject=subject::where('subject->ssa3',$subject)->get();
+                                // $year3_arr[$i]=($regid=$data_subject[$i]->registrations_id);
                                 
+                                // $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
+                                // ->whereIn('registrations_id', $year3_arr)
+                                // ->get();
+
+                                // if($users) {
+                                // return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+                                // }
+
+                                //Rechange
+
+                                $data_subject=subject::where('subject->ssa3',$subject)->get();
+                                
+                                $data_subject_count=subject::where('subject->ssa3',$subject)->get()->count();
+                                
+                                $arr=array();
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $arr[$i]=$regId=$data_subject[$i]->registrations_id;
+                                }
+                               
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
+                                    ->whereIn('registrations_id',$arr)
+                                    ->get();
+
+                                   
+                                    if($users) {
+                                    return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+                                    }
+                                }
                             }
                             
                             
@@ -126,71 +211,98 @@ class SubjectController extends Controller
                     
                             if($subject==$sub_select_four){
                                 
-                                $data_subject=subject::where('subject->ssa4',$subject)->get();
-                                $year4_arr[$i]=($regid=$data_subject[$i]->registrations_id);
+                                // $data_subject=subject::where('subject->ssa4',$subject)->get();
+                                // $year4_arr[$i]=($regid=$data_subject[$i]->registrations_id);
                                 
+                                // $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
+                                // ->whereIn('registrations_id', $year4_arr)
+                                // ->get();
+
+                                // if($users) {
+                                // return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+                                // }
+
+                                //Rechanging
+                                $data_subject=subject::where('subject->ssa4',$subject)->get();
+                                
+                                $data_subject_count=subject::where('subject->ssa4',$subject)->get()->count();
+                                
+                                $arr=array();
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $arr[$i]=$regId=$data_subject[$i]->registrations_id;
+                                }
+                               
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
+                                    ->whereIn('registrations_id',$arr)
+                                    ->get();
+
+                                   
+                                    if($users) {
+                                    return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+                                    }
+                                }
                             }
                             
                       }
             
          }
        
+        //  return $year1_arr;
 
         // return [$year1_arr ,$year2_arr, $year3_arr, $year4_arr];
-         $arr1=sizeof($year1_arr);
-         $arr2=sizeof($year2_arr);
-         $arr3=sizeof($year3_arr);
-         $arr4=sizeof($year4_arr);
+        //  $arr1=sizeof($year1_arr);
+        //  $arr2=sizeof($year2_arr);
+        //  $arr3=sizeof($year3_arr);
+        //  $arr4=sizeof($year4_arr);
 
-        if($arr1>0){
+        // if($arr1>0){
             // $users = subject::with('Registration')->whereIn('registrations_id', $year1_arr)->get();
-            $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
-            ->whereIn('registrations_id', $year1_arr)
-            ->get();
+        //     $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
+        //     ->whereIn('registrations_id', $year1_arr)
+        //     ->get();
             
-            if($users) {
-                return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
-            }
+        //     if($users) {
+        //         return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+        //     }
            
-        }
-        else if($arr2>0){
-            $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
-            ->whereIn('registrations_id', $year2_arr)
-            ->get();
+        // }
+        // else if($arr2>0){
+        //     $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
+        //     ->whereIn('registrations_id', $year2_arr)
+        //     ->get();
 
-            if($users) {
-                return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
-            }
+        //     if($users) {
+        //         return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+        //     }
            
-        }
-        else if($arr3>0){
-            $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
-            ->whereIn('registrations_id', $year3_arr)
-            ->get();
+        // }
+        // else if($arr3>0){
+        //     $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
+        //     ->whereIn('registrations_id', $year3_arr)
+        //     ->get();
 
-            if($users) {
-                return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
-            }
+        //     if($users) {
+        //         return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+        //     }
             
-        }
-         if($arr4>0){
-            $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
-            ->whereIn('registrations_id', $year4_arr)
-            ->get();
+        // }
+        //  if($arr4>0){
+        //     $users = Registration::join('subjects', 'subjects.registrations_id', '=', 'registrations.id')
+        //     ->whereIn('registrations_id', $year4_arr)
+        //     ->get();
 
-            if($users) {
-                return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
-            }
+        //     if($users) {
+        //         return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+        //     }
            
-        }
+        // }
         
     }
 
     ///////////////////////////////////////////////////////////////////////////////
 
     public function searchSubject_lectures(Request $request){
-
-        
 
         $year = $request->year;
         $semester = $request->semester;
