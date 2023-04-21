@@ -15,7 +15,7 @@ use App\Http\Controllers\EduQualificationController;
 use App\Http\Controllers\Allcontroller;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AlluserProfile;
-use App\Http\Controllers\AcceptkuppiRequestController;
+use App\Http\Controllers\KuppiAcceptContoller;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -54,3 +54,4 @@ Route::post('/search/subject/lectures',[SubjectController::class,'searchSubject_
 Route::post('/requestFromOthers',[KuppiController::class,'rfo']);
 Route::post('/countforhome',[KuppiController::class,'countforhome']);
 Route::post('/requestAccepted',[KuppiAcceptContoller::class,'racp']);
+Route::post('/requestAcceptedsender',[KuppiAcceptContoller::class,'acceptsender']);

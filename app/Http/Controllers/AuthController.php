@@ -78,6 +78,7 @@ class AuthController extends Controller
         $index=$request->empNo;
         $password=$request->password;
 
+        
         $LectureReg= LectureReg::where('empNo',$index)->where('password',$password)->first();
         if($LectureReg) {
             if($LectureReg->empNo === $index || $LectureReg->password === $password){
