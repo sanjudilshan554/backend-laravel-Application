@@ -70,4 +70,6 @@ class RegistrationController extends Controller
         
         return response()->json(['data'=>$data,'status'=>'200','message'=>'data save']);
     } 
+
+     
 }

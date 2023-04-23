@@ -304,8 +304,10 @@ class SubjectController extends Controller
 
     public function searchSubject_lectures(Request $request){
 
+      
         $year = $request->year;
         $semester = $request->semester;
+        // print_r (explode('[0]',$semester)[0]);
         $subject = $request->subject;
 
        $year1_arr=array();
@@ -314,9 +316,11 @@ class SubjectController extends Controller
        $year4_arr=array();
 
       $subject_data = subject::get();
+    //   $data_new = json_decode($subject_data[0]->year,true);
 
-      $row_count = subject::count();
+        $row_count = subject::count();
 
+       
        for($i = 0;  $i <$row_count; $i++) {
         
         
@@ -325,6 +329,8 @@ class SubjectController extends Controller
                 $year3= $subject_data[$i]->year['year3'] ;
                 $year4= $subject_data[$i]->year['year4'] ;
 
+                
+                
                 $sem_select_one=$subject_data[$i]->semester['sse1'] ;
                 $sem_select_two=$subject_data[$i]->semester['sse2'] ;
                 $sem_select_three=$subject_data[$i]->semester['sse3'] ;
@@ -336,57 +342,108 @@ class SubjectController extends Controller
                
                 
                 if($year1 == $year){
-
                     
-                    if($sem_select_one==$semester){
+                     if($sem_select_one==$semester){
                         
-                         if($subject==$sub_select_one){
-                           
+                       if($subject==$sub_select_one){
+                            
                                 $data_subject=subject::where('subject->ssa1',$subject)->get();
-                                $year1_arr[$i]= $data_subject;
-                                // $regid=$data_subject[1]->lecture_regs_id;
-                                // return $regid;
-                                // $year1_arr[$j]= ($regid=$data_subject[1]->lecture_regs_id);
-                            
                                 
-                             }
-                                  
+                               
+                                // return $data_subject;
+                                // $year1_arr[$i]=($regid=$data_subject[$i]->registrations_id);
+                                $data_subject_count=subject::where('subject->ssa1',$subject)->get()->count();
+                                
+                               
+                                // return $data_subject[3]->registrations_id;
+                                // return $data_subject_count;
+                                
+                                $arr=array();
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $arr[$i]=$data_subject[$i]->lecture_regs_ids;
+                                }
+                                
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $users = LectureReg::join('subjects', 'subjects.lecture_regs_ids', '=', 'lecture_regs.id')
+                                    ->whereIn('subjects.lecture_regs_ids',$arr)
+                                    ->get();
+
+                                   
+                                    if($users) {
+                                    return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+                                    }
+                                }
+                               
+                                
                             }
-                            
+ 
                      }
                      
                     
-                
+                }
                
                 else if($year2 == $year){
-                    
-                    
                     if($sem_select_two==$semester){
-                        
-                            
-                            if($subject==$sub_select_two){
+                        if($subject==$sub_select_two){
+                               
+                                //working
+                                //----------------------------------------------------------------
+                                $data_subject=subject::where('subject->ssa2',$subject)->get();
                                 
-                                $data_subject=subject::where('subject->ssa1',$subject)->get();
-                                $year2_arr[$i]= $data_subject;
+                                $data_subject_count=subject::where('subject->ssa2',$subject)->get()->count();
                                 
+                                
+                                $arr=array();
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $arr[$i]=$regId=$data_subject[$i]->lecture_regs_ids;
+                                }
+                               
+                                
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $users = LectureReg::join('subjects', 'subjects.lecture_regs_ids', '=', 'lecture_regs.id')
+                                    ->whereIn('subjects.lecture_regs_ids',$arr)
+                                    ->get();
+
+                                  
+                                   
+                                    if($users) {
+                                    return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+                                    }
+                                }
+                                
+                                }
                             }
-                            
-                    }
-                    
                         
                   }
                 
 
                 else if($year3 == $year){
                    
-
+                    
                     if($sem_select_three==$semester){
-                         
+                        
                             if($subject==$sub_select_three){
+                                 
+                               
+                                $data_subject=subject::where('subject->ssa3',$subject)->get();
                                 
-                                $data_subject=subject::where('subject->ssa1',$subject)->get();
-                                $year3_arr[$i]= $data_subject;
+                                $data_subject_count=subject::where('subject->ssa3',$subject)->get()->count();
                                 
+                                $arr=array();
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $arr[$i]=$regId=$data_subject[$i]->lecture_regs_ids;
+                                }
+                               
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $users = LectureReg::join('subjects', 'subjects.lecture_regs_ids', '=', 'lecture_regs.id')
+                                    ->whereIn('subjects.lecture_regs_ids',$arr)
+                                    ->get();
+
+                                   
+                                    if($users) {
+                                    return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+                                    }
+                                }
                             }
                             
                             
@@ -400,130 +457,276 @@ class SubjectController extends Controller
                     
                             if($subject==$sub_select_four){
                                 
-                                $data_subject=subject::where('subject->ssa1',$subject)->get();
-                                $year4_arr[$i]= $data_subject;
+                               
+                                //Rechanging
+                                $data_subject=subject::where('subject->ssa4',$subject)->get();
                                 
+                                $data_subject_count=subject::where('subject->ssa4',$subject)->get()->count();
+                                
+                                $arr=array();
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $arr[$i]=$regId=$data_subject[$i]->lecture_regs_ids;
+                                }
+                               
+                                for($i=0; $i<$data_subject_count; $i++){
+                                     $users = LectureReg::join('subjects', 'subjects.lecture_regs_ids', '=', 'lecture_regs.id')
+                                    ->whereIn('subjects.lecture_regs_ids',$arr)
+                                    ->get();
+
+                                   
+                                    if($users) {
+                                    return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+                                    }
+                                }
                             }
                             
                       }
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        
+    //     $year = $request->year;
+    //     $semester = $request->semester;
+    //     $subject = $request->subject;
+
+    //    $year1_arr=array();
+    //    $year2_arr=array();
+    //    $year3_arr=array();
+    //    $year4_arr=array();
+
+    //   $subject_data = subject::get();
+
+    //   $row_count = subject::count();
+
+    //    for($i = 0;  $i <$row_count; $i++) {
+        
+        
+    //             $year1= $subject_data[$i]->year['year1'] ;
+    //             $year2= $subject_data[$i]->year['year2'] ;
+    //             $year3= $subject_data[$i]->year['year3'] ;
+    //             $year4= $subject_data[$i]->year['year4'] ;
+
+    //             $sem_select_one=$subject_data[$i]->semester['sse1'] ;
+    //             $sem_select_two=$subject_data[$i]->semester['sse2'] ;
+    //             $sem_select_three=$subject_data[$i]->semester['sse3'] ;
+
+    //             $sub_select_one=$subject_data[$i]->subject['ssa1'];
+    //             $sub_select_two=$subject_data[$i]->subject['ssa2'];
+    //             $sub_select_three=$subject_data[$i]->subject['ssa3'];
+    //             $sub_select_four=$subject_data[$i]->subject['ssa4'];
+               
+                
+    //             if($year1 == $year){
+
+                    
+    //                 if($sem_select_one==$semester){
+                        
+    //                      if($subject==$sub_select_one){
+                           
+    //                             $data_subject=subject::where('subject->ssa1',$subject)->get();
+    //                             $year1_arr[$i]= $data_subject;
+    //                             // $regid=$data_subject[1]->lecture_regs_id;
+    //                             // return $regid;
+    //                             // $year1_arr[$j]= ($regid=$data_subject[1]->lecture_regs_id);
+                            
+                                
+    //                          }
+                                  
+    //                         }
+                            
+    //                  }
+                     
+                    
+                
+               
+    //             else if($year2 == $year){
+                    
+                    
+    //                 if($sem_select_two==$semester){
+                        
+                            
+    //                         if($subject==$sub_select_two){
+                                
+    //                             $data_subject=subject::where('subject->ssa1',$subject)->get();
+    //                             $year2_arr[$i]= $data_subject;
+                                
+    //                         }
+                            
+    //                 }
+                    
+                        
+    //               }
+                
+
+    //             else if($year3 == $year){
+                   
+
+    //                 if($sem_select_three==$semester){
+                         
+    //                         if($subject==$sub_select_three){
+                                
+    //                             $data_subject=subject::where('subject->ssa1',$subject)->get();
+    //                             $year3_arr[$i]= $data_subject;
+                                
+    //                         }
+                            
+                            
+    //                    }
+                    
+    //               }
+
+
+    //             else if($year4 == $year){
+                    
+                    
+    //                         if($subject==$sub_select_four){
+                                
+    //                             $data_subject=subject::where('subject->ssa1',$subject)->get();
+    //                             $year4_arr[$i]= $data_subject;
+                                
+    //                         }
+                            
+    //                   }
             
                   
                   
-         }
+    //      }
 
-        //  return [$year1_arr,$year2_arr,$year3_arr,$year4_arr];
-        //return $year1_arr;  
-        // return $i;
-         // there some error here,array come with the inside of some number,so i can't get those number correctly 
-         //I have to remove that number or i have to idenfied that number;
+    //     //  return [$year1_arr,$year2_arr,$year3_arr,$year4_arr];
+    //     //return $year1_arr;  
+    //     // return $i;
+    //      // there some error here,array come with the inside of some number,so i can't get those number correctly 
+    //      //I have to remove that number or i have to idenfied that number;
 
 
         
      
-        $ids1=array();
-        $ids2=array();
-        $ids3=array();
-        $ids4=array();
+    //     $ids1=array();
+    //     $ids2=array();
+    //     $ids3=array();
+    //     $ids4=array();
 
-        $arr1lim=(sizeof($year1_arr))-1;
-        $arr2lim=(sizeof($year2_arr))-1;
-        $arr3lim=(sizeof($year3_arr))-1;
-        $arr4lim=(sizeof($year4_arr))-1;
+    //     $arr1lim=(sizeof($year1_arr))-1;
+    //     $arr2lim=(sizeof($year2_arr))-1;
+    //     $arr3lim=(sizeof($year3_arr))-1;
+    //     $arr4lim=(sizeof($year4_arr))-1;
 
         
-        //  return [$arr1lim,$arr2lim,$arr3lim,$arr4lim];
+    //     //  return [$arr1lim,$arr2lim,$arr3lim,$arr4lim];
 
-        if($arr1lim>0){
-            $unic=(sizeof($year1_arr))+1;
-            for($j=0; $j<= $arr1lim; $j++){
+    //     if($arr1lim>0){
+    //         $unic=(sizeof($year1_arr))+1;
+    //         for($j=0; $j<= $arr1lim; $j++){
                 
-                // return $year1_arr[2][$j]->id;
-                $ids1[$j]=$year1_arr[ $unic][$j]->lecture_regs_id;
-                // echo $j;
-                // return $year1_arr[3][$j]->lecture_regs_id;
-                // return $ids1[$j];
+    //             // return $year1_arr[2][$j]->id;
+    //             $ids1[$j]=$year1_arr[ $unic][$j]->lecture_regs_id;
+    //             // echo $j;
+    //             // return $year1_arr[3][$j]->lecture_regs_id;
+    //             // return $ids1[$j];
               
-              }
+    //           }
                 
-        }
+    //     }
     
 
-        if($arr2lim-1>0){
-            $unic=(sizeof($year2_arr))+1;
-            for($j=0; $j<=sizeof($year2_arr); $j++){
-                $ids2[$j]=$year2_arr[$unic][$j]->lecture_regs_id;
+    //     if($arr2lim-1>0){
+    //         $unic=(sizeof($year2_arr))+1;
+    //         for($j=0; $j<=sizeof($year2_arr); $j++){
+    //             $ids2[$j]=$year2_arr[$unic][$j]->lecture_regs_id;
                
-            }
-        }
-        if($arr3lim-1>0){
-             $unic=(sizeof($year3_arr))+1;
-            for($j=0; $j<=sizeof($year3_arr); $j++){
-                $ids3[$j]=$year3_arr[$unic][$j]->lecture_regs_id;
+    //         }
+    //     }
+    //     if($arr3lim-1>0){
+    //          $unic=(sizeof($year3_arr))+1;
+    //         for($j=0; $j<=sizeof($year3_arr); $j++){
+    //             $ids3[$j]=$year3_arr[$unic][$j]->lecture_regs_id;
                
-            }
-        }
-        if($arr4lim-1>0){
-             $unic=(sizeof($year4_arr))+1;
-            for($j=0; $j<=sizeof($year4_arr); $j++){
-                $ids4[$j]=$year4_arr[$unic][$j]->lecture_regs_id;
+    //         }
+    //     }
+    //     if($arr4lim-1>0){
+    //          $unic=(sizeof($year4_arr))+1;
+    //         for($j=0; $j<=sizeof($year4_arr); $j++){
+    //             $ids4[$j]=$year4_arr[$unic][$j]->lecture_regs_id;
            
-            }
-        }
+    //         }
+    //     }
          
        
 
-         $arr1=sizeof($ids1);
-         $arr2=sizeof($ids2);
-         $arr3=sizeof($ids3);
-         $arr4=sizeof($ids4);
+    //      $arr1=sizeof($ids1);
+    //      $arr2=sizeof($ids2);
+    //      $arr3=sizeof($ids3);
+    //      $arr4=sizeof($ids4);
 
-        if($arr1>0){
+    //     if($arr1>0){
     
 
-            // return response()->json(['message'=>'arry one going up','status'=>'200']);
+    //         // return response()->json(['message'=>'arry one going up','status'=>'200']);
             
-            $users = LectureReg::join('subjects', 'subjects.lecture_regs_id', '=', 'lecture_regs.id')
-            ->whereIn('lecture_regs_id', $ids1)
-            ->get();
+    //         $users = LectureReg::join('subjects', 'subjects.lecture_regs_id', '=', 'lecture_regs.id')
+    //         ->whereIn('lecture_regs_id', $ids1)
+    //         ->get();
             
-            if($users) {
-                return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
-            }
+    //         if($users) {
+    //             return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+    //         }
            
-        }
-        else if($arr2>0){
-            $users = LectureReg::join('subjects', 'subjects.lecture_regs_id', '=', 'lecture_regs.id')
-            ->whereIn('lecture_regs_id', $ids2)
-            ->get();
+    //     }
+    //     else if($arr2>0){
+    //         $users = LectureReg::join('subjects', 'subjects.lecture_regs_id', '=', 'lecture_regs.id')
+    //         ->whereIn('lecture_regs_id', $ids2)
+    //         ->get();
 
-            if($users) {
-                return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
-            }
+    //         if($users) {
+    //             return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+    //         }
            
-        }
-        else if($arr3>0){
-            $users = LectureReg::join('subjects', 'subjects.lecture_regs_id', '=', 'lecture_regs.id')
-            ->whereIn('lecture_regs_id', $ids3)
-            ->get();
+    //     }
+    //     else if($arr3>0){
+    //         $users = LectureReg::join('subjects', 'subjects.lecture_regs_id', '=', 'lecture_regs.id')
+    //         ->whereIn('lecture_regs_id', $ids3)
+    //         ->get();
 
-            if($users) {
-                return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
-            }
+    //         if($users) {
+    //             return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+    //         }
             
-        }
-         if($arr4>0){
-            $users = LectureReg::join('subjects', 'subjects.lecture_regs_id', '=', 'lecture_regs.id')
-            ->whereIn('lecture_regs_id', $ids4)
-            ->get();
+    //     }
+    //      if($arr4>0){
+    //         $users = LectureReg::join('subjects', 'subjects.lecture_regs_id', '=', 'lecture_regs.id')
+    //         ->whereIn('lecture_regs_id', $ids4)
+    //         ->get();
 
-            if($users) {
-                return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
-            }
+    //         if($users) {
+    //             return response()->json(['data'=>$users,'status'=>'200','message'=>'data saved']);
+    //         }
 
 
             
            
-        }
+    //     }
         
     }
 

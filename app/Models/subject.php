@@ -11,10 +11,10 @@ class subject extends Model
     use HasFactory;
 
     protected $fillable=[
-        'id',
+       
         'registrations_id',
-        'lecture_regs_id',
         'year',
+        'lecture_regs_ids',
         'semester',
         'subject',
         'rating',

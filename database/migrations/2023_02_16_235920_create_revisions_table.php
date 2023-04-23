@@ -15,14 +15,16 @@ class CreateRevisionsTable extends Migration
     {
         Schema::create('revisions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('registrations_id');
-            $table->foreign('registrations_id')->references('id')->on('registrations')->onDelete('cascade');
             
-            //  $table->unsignedBigInteger('registrations_id')->nullable();;
-            // $table->foreign('registrations_id')->references('id')->on('registrations')->onDelete('cascade');
+            $table->unsignedBigInteger('Requester_id');
+            $table->foreign('Requester_id')->references('id')->on('registrations')->onDelete('cascade');
+            
+            $table->unsignedBigInteger('lectureRegId');
+            $table->foreign('lectureRegId')->references('id')->on('lecture_regs')->onDelete('cascade');
             
             $table->String('revName');
             $table->String('subject');
+            $table->String('contact');
             $table->String('freetime');
             $table->String('lecHallName');
             $table->String('lectureName');
@@ -30,6 +32,8 @@ class CreateRevisionsTable extends Migration
             $table->String('lectureempID');
             $table->String('members');
             $table->timestamps();
+
+        
         });
     }
 

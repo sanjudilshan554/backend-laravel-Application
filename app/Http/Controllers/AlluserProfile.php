@@ -38,7 +38,7 @@ class AlluserProfile extends Controller
         }
         else if($request->role=="lecture"){
             $software_data= Software::with('software')->where('Lecture_regs_id',$request->id)->get();
-            $subject_data = subject::with('subject')->where('lecture_regs_id',$request->id)->get();
+            $subject_data = subject::with('subject')->where('lecture_regs_ids',$request->id)->get();
             $work_data=work_exp::with('work_exp')->where('lecture_regs_id',$request->id)->get();
             $edu_qualify_data=edu_qualification::with('edu_qualification')->where('lecture_regs_id',$request->id)->get();
             $Lect_reg=LectureReg::with('LectureReg')->where('id',$request->id)->get();

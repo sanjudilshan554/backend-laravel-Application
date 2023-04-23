@@ -16,6 +16,8 @@ use App\Http\Controllers\Allcontroller;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AlluserProfile;
 use App\Http\Controllers\KuppiAcceptContoller;
+use App\Http\Controllers\RevisionAcceptContoller;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -55,3 +57,7 @@ Route::post('/requestFromOthers',[KuppiController::class,'rfo']);
 Route::post('/countforhome',[KuppiController::class,'countforhome']);
 Route::post('/requestAccepted',[KuppiAcceptContoller::class,'racp']);
 Route::post('/requestAcceptedsender',[KuppiAcceptContoller::class,'acceptsender']);
+Route::post('/gettingRevisionRequest',[RevisionController::class,'request']);
+Route::post('/revisionRequestHome',[RevisionController::class,'datasend']);
+Route::post('/RevisionrequestAccepted',[RevisionAcceptContoller::class,'Accepted']);
+Route::post('/gettingDetailstoRevisionRequest',[RevisionController::class,'sender']);

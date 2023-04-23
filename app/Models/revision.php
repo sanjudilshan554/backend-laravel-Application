@@ -10,9 +10,11 @@ class revision extends Model
     use HasFactory;
 
     protected $fillable=[
+        'Requester_id',
+        'lectureRegId',
         'revName',
-        'registrations_id',
         'subject',
+        'contact',
         'freetime',
         'lecHallName',
         'lectureName',

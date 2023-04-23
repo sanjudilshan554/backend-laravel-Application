@@ -18,8 +18,8 @@ class CreateSubjectsTable extends Migration
             $table->unsignedBigInteger('registrations_id')->nullable();
             $table->foreign('registrations_id')->references('id')->on('registrations')->onDelete('cascade');
 
-            $table->unsignedBigInteger('lecture_regs_id')->nullable();
-            $table->foreign('lecture_regs_id')->references('id')->on('lecture_regs')->onDelete('cascade');
+            $table->unsignedBigInteger('lecture_regs_ids')->nullable();
+            $table->foreign('lecture_regs_ids')->references('id')->on('lecture_regs')->onDelete('cascade');
 
             $table->json('year')->nullable();
             $table->json('semester')->nullable();

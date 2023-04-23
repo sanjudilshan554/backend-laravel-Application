@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\kuppi;
 use App\Models\Registration;
 use App\Models\AcceptkuppiRequest;
+use App\Models\revision;
 
 class KuppiController extends Controller
 {
@@ -87,8 +88,7 @@ class KuppiController extends Controller
         
         $data2=AcceptkuppiRequest::where('Rrequester_id',$currentLocalhostId)
         ->get()->count();
-        
-        
+               
         return response()->json(['data'=>$data,'data2'=>$data2,'response'=>'200']);
 
         
