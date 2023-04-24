@@ -61,3 +61,4 @@ Route::post('/gettingRevisionRequest',[RevisionController::class,'request']);
 Route::post('/revisionRequestHome',[RevisionController::class,'datasend']);
 Route::post('/RevisionrequestAccepted',[RevisionAcceptContoller::class,'Accepted']);
 Route::post('/gettingDetailstoRevisionRequest',[RevisionController::class,'sender']);
+Route::post('/RevisionAcceptviewer',[RevisionAcceptContoller::class,'getting']);

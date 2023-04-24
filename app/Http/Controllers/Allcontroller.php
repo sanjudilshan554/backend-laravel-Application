@@ -15,6 +15,7 @@ class Allcontroller extends Controller
      
         $user_id = $request->id;
         $user_role=$request->role;
+        
         $lec_regId=$request->lectureReg;
         
         if($user_role == "lecture"){
@@ -172,12 +173,13 @@ class Allcontroller extends Controller
             'rating' => $software_rate_data,
         ]);
 
-        
+        // Lect_register_id
 
         //Saving education qualification
         $data=edu_qualification::create([
         'registrations_id'=>$register_id,
-        'lecture_regs_id'=> $Lect_register_id,
+        // 'lecture_regs_id'=> $Lect_register_id,
+        'lecture_regs_id'=> $Lecture_regs_id,
         'name'=>$name_of_Edu_Qulaify,
         'datefrom'=>$date_of_edu_from,
         'dateto'=>$date_of_edu_to,

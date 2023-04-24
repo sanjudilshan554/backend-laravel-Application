@@ -30,6 +30,7 @@ class SubjectController extends Controller
     public function searchSubject(Request $request){
         
        
+       
         $year = $request->years;
         $semester = $request->semester;
         // print_r (explode('[0]',$semester)[0]);
@@ -67,11 +68,12 @@ class SubjectController extends Controller
                
                 
                 if($year1 == $year){
-
+                    
                      if($sem_select_one==$semester){
-                        
+                     
                        if($subject==$sub_select_one){
 
+                         
                                 $data_subject=subject::where('subject->ssa1',$subject)->get();
                                 
                                

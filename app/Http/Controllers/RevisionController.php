@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\revision;
+use App\Models\RevisionAccept;
+
+
 
 use Illuminate\Http\Request;
 
@@ -62,8 +65,10 @@ class RevisionController extends Controller
         $localID=$request->localid;
 
         $data=revision::where('lectureRegId',$localID)->get()->count();  
+
+        $data2=RevisionAccept::where('StudentLocalhost',$localID)->get()->count(); 
         
-        return response()->json(['data'=>$data,'status'=>'200']);
+        return response()->json(['data'=>$data,'data2'=>$data2,'status'=>'200']);
         
     }
 
