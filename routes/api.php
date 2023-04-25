@@ -17,6 +17,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\AlluserProfile;
 use App\Http\Controllers\KuppiAcceptContoller;
 use App\Http\Controllers\RevisionAcceptContoller;
+use App\Http\Controllers\AllTotalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,3 +63,4 @@ Route::post('/revisionRequestHome',[RevisionController::class,'datasend']);
 Route::post('/RevisionrequestAccepted',[RevisionAcceptContoller::class,'Accepted']);
 Route::post('/gettingDetailstoRevisionRequest',[RevisionController::class,'sender']);
 Route::post('/RevisionAcceptviewer',[RevisionAcceptContoller::class,'getting']);
+Route::get('/getTotalkuppiCount',[AllTotalController::class,'getTotal']);
