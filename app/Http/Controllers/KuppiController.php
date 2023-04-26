@@ -15,17 +15,17 @@ class KuppiController extends Controller
         
         $validate_data=$request ->validate([
             
-            'revison_name'=>['required'],
-            'local_id'=>['required'],//local host reg id
-            'ConductorRegid'=>['required'],
-            'subject'=>['required'],
-            'free_time'=>['required'],
-            'place'=>['required'],
-            'name'=>['required'],
-            'email'=>['required','email'],
-            'regId'=>['required'],
-            'type'=>['required'],
-            'members'=>['required'],
+            'revison_name'=>[''],
+            'local_id'=>[''],//local host reg id
+            'ConductorRegid'=>[''],
+            'subject'=>[''],
+            'free_time'=>[''],
+            'place'=>[''],
+            'name'=>[''],
+            'email'=>[''],
+            'regId'=>[''],
+            'type'=>[''],
+            'members'=>[''],
         ]);
 
        $data=kuppi::create([

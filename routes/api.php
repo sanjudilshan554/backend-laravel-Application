@@ -65,3 +65,5 @@ Route::post('/gettingDetailstoRevisionRequest',[RevisionController::class,'sende
 Route::post('/RevisionAcceptviewer',[RevisionAcceptContoller::class,'getting']);
 Route::get('/getTotalkuppiCount',[AllTotalController::class,'getTotal']);
 Route::get('/getTableDetails',[AllTotalController::class,'sendTableinfo']);
+
+Route::post('/updatePostTable',[AllTotalController::class,'updatePost']);

@@ -14,10 +14,10 @@ class EduQualificationController extends Controller
         $validate_data=$request->validate([
         'registrations_id'=>[''],
         'lecture_regs_id'=>[''],
-        'name'=>['required'],
+        'name'=>[''],
         'datefrom'=>[''],
         'dateto'=>[''],
-        'description'=>['required'],
+        'description'=>[''],
         ]);
 
 

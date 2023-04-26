@@ -14,17 +14,18 @@ class RevisionController extends Controller
      
 
         $validate_data=$request ->validate([
-            'Requester_id'=>['required'],
-            'lectureRegId'=>['required'],
-            'revName'=>['required'],
-            'subject'=>['required'],
+            'Requester_id'=>[''],
+            'lectureRegId'=>[''],
+            'revName'=>[''],
+            'subject'=>[''],
             'contact'=>[''],
-            'freetime'=>['required'],
-            'lecHallName'=>['required'],
-            'lectureName'=>['required'],
-            'lecturemail'=>['required','email'],
-            'lectureempID'=>['required'],
-            'members'=>['required'],
+            'freetime'=>[''],
+            'lecHallName'=>[''],
+            'lectureName'=>[''],
+            // 'lecturemail'=>['required','email'],
+            'lecturemail'=>[''],
+            'lectureempID'=>[''],
+            'members'=>[''],
         ]);
 
         $data=revision::create([

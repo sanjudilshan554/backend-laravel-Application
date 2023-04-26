@@ -13,8 +13,8 @@ class SubjectController extends Controller
         $validate_data=$request->validate([
             'registrations_id'=>[''],
             'lecture_regs_id'=>[''],
-            'name'=>['required'],
-            'rating'=>['required'],
+            'name'=>[''],
+            'rating'=>[''],
         ]);
 
         $data=subject::create([
